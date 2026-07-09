@@ -139,126 +139,69 @@ const audience = [
 </script>
 
 <template>
-  <main class="page">
-    <header class="hero">
-      <div class="eyebrow">第四届核酸适体筛选免费直播大会 · 合作生态建设发布会</div>
-      <h1>SELEX技术直播培训与实战体验营</h1>
-      <p class="meta">2026年7月15日-17日</p>
-      <p class="submeta">三天实战直播，两轮完整 SELEX 流程，从靶标到验证，边做边讲，实时答疑。</p>
-      <div class="actions">
-        <a class="btn btn-primary" :href="registrationUrl" target="_blank" rel="noopener">报名链接</a>
-        <a class="btn btn-secondary" :href="'mailto:' + email">咨询邮箱</a>
-      </div>
-      <div class="lead">
-        把“适体筛选”做成可以看懂、可以转发、可以落地的网页版本，适合公众号发布与手机浏览。
-      </div>
-    </header>
+  <main class="article">
+    <h1>SELEX技术直播培训与实战体验营</h1>
+    <p class="date">2026年7月15日-17日</p>
+    <p class="subtitle">—— 第四届核酸适体筛选免费直播大会 · 合作生态建设发布会</p>
+    <section class="lead">三天实战直播，两轮完整 SELEX 流程，从靶标到验证，边做边讲，实时答疑。</section>
 
-    <section class="content">
-      <article class="panel" v-for="section in sections" :key="section.title">
-        <div class="panel-header">
-          <h2>{{ section.title }}</h2>
-        </div>
-        <div class="panel-body">
-          <template v-if="section.type === 'intro' || section.type === 'text'">
-            <div class="intro">
-              <p v-for="(paragraph, index) in section.paragraphs" :key="index">{{ paragraph }}</p>
-            </div>
-          </template>
+    <template v-for="section in sections" :key="section.title">
+      <h2>{{ section.title }}</h2>
 
-          <template v-if="section.type === 'bullets'">
-            <div class="bullets">
-              <div class="bullet" v-for="item in section.items" :key="item">{{ item }}</div>
-            </div>
-          </template>
+      <template v-if="section.type === 'intro' || section.type === 'text'">
+        <p v-for="(paragraph, index) in section.paragraphs" :key="`${section.title}-${index}`">{{ paragraph }}</p>
+      </template>
 
-          <template v-if="section.type === 'text' || section.type === 'gallery'">
-            <p v-for="(paragraph, index) in section.paragraphs" :key="index + '_p'">{{ paragraph }}</p>
-          </template>
+      <template v-if="section.type === 'bullets'">
+        <p class="bullet" v-for="item in section.items" :key="item">
+          <span class="check">✓</span>{{ item }}
+        </p>
+      </template>
 
-          <figure v-if="section.image" class="figure">
-            <img :src="section.image.src" :alt="section.image.alt" loading="lazy" />
-            <figcaption class="caption">{{ section.image.caption }}</figcaption>
-          </figure>
+      <template v-if="section.type === 'gallery'">
+        <p v-for="(paragraph, index) in section.paragraphs" :key="`${section.title}-${index}`">{{ paragraph }}</p>
+      </template>
 
-          <figure v-if="section.secondaryImage" class="figure">
-            <img :src="section.secondaryImage.src" :alt="section.secondaryImage.alt" loading="lazy" />
-            <figcaption class="caption">{{ section.secondaryImage.caption }}</figcaption>
-          </figure>
+      <figure v-if="section.image" class="figure">
+        <img :src="section.image.src" :alt="section.image.alt" loading="lazy" />
+        <figcaption>{{ section.image.caption }}</figcaption>
+      </figure>
 
-          <div v-if="section.images" class="gallery">
-            <figure v-for="image in section.images" :key="image.src">
-              <img :src="image.src" :alt="image.alt" loading="lazy" />
-              <figcaption class="caption">{{ image.caption }}</figcaption>
-            </figure>
-          </div>
-        </div>
-      </article>
+      <figure v-if="section.secondaryImage" class="figure">
+        <img :src="section.secondaryImage.src" :alt="section.secondaryImage.alt" loading="lazy" />
+        <figcaption>{{ section.secondaryImage.caption }}</figcaption>
+      </figure>
 
-      <article class="panel">
-        <div class="panel-header">
-          <h2>会议信息</h2>
-        </div>
-        <div class="panel-body">
-          <div class="info-grid">
-            <div class="info" v-for="item in schedule" :key="item">{{ item }}</div>
-          </div>
-        </div>
-      </article>
+      <template v-if="section.images">
+        <figure v-for="image in section.images" :key="image.src" class="figure">
+          <img :src="image.src" :alt="image.alt" loading="lazy" />
+          <figcaption>{{ image.caption }}</figcaption>
+        </figure>
+      </template>
+    </template>
 
-      <article class="panel">
-        <div class="panel-header">
-          <h2>日程概览</h2>
-        </div>
-        <div class="panel-body">
-          <div class="info-grid">
-            <div class="info" v-for="item in timeline" :key="item">{{ item }}</div>
-          </div>
-        </div>
-      </article>
+    <h2>会议信息</h2>
+    <p class="info">时间：2026年7月15日-17日（每天 9:00-12:00，14:00-17:00）</p>
+    <p class="info">形式：线上直播（免费）+ 线下限量席位</p>
+    <p class="info">主办：中国科学院杭州医学研究所 核酸适体筛选中心</p>
 
-      <article class="panel">
-        <div class="panel-header">
-          <h2>适合谁参加？</h2>
-        </div>
-        <div class="panel-body">
-          <div class="bullets">
-            <div class="bullet" v-for="item in audience" :key="item">{{ item }}</div>
-          </div>
-        </div>
-      </article>
+    <h2>日程概览</h2>
+    <p class="info">7月15日上午：生态建设发布会，中心资源与合作机制介绍，合作伙伴成果分享。</p>
+    <p class="info">7月15日下午-17日：两轮 SELEX 筛选全流程直播培训 + 实时答疑。</p>
 
-      <article class="panel">
-        <div class="panel-header">
-          <h2>参会福利</h2>
-        </div>
-        <div class="panel-body">
-          <div class="info">报名即送 2024 年培训完整剪辑视频（双语字幕）。</div>
-        </div>
-      </article>
+    <h2>适合谁参加？</h2>
+    <p class="bullet" v-for="item in audience" :key="item">
+      <span class="check">✓</span>{{ item }}
+    </p>
 
-      <article class="panel">
-        <div class="panel-header">
-          <h2>报名方式</h2>
-        </div>
-        <div class="panel-body">
-          <div class="info-grid">
-            <div class="info">
-              报名链接：
-              <a :href="registrationUrl" target="_blank" rel="noopener">{{ registrationUrl }}</a>
-            </div>
-            <div class="info">
-              咨询邮箱：
-              <a :href="'mailto:' + email">{{ email }}</a>
-            </div>
-          </div>
-        </div>
-      </article>
+    <h2>参会福利</h2>
+    <p class="bullet"><span class="check">✓</span>报名即送 2024 年培训完整剪辑视频（双语字幕）。</p>
 
-      <footer class="footer">
-        <div class="ending">7月15日，线上见！</div>
-        <div class="org">中科院杭州医学所 核酸适体筛选中心</div>
-      </footer>
-    </section>
+    <h2>报名方式</h2>
+    <p class="info">报名链接：<a :href="registrationUrl" target="_blank" rel="noopener">{{ registrationUrl }}</a></p>
+    <p class="info">咨询邮箱：<a :href="'mailto:' + email">{{ email }}</a></p>
+
+    <p class="ending">7月15日，线上见！</p>
+    <p class="org">中科院杭州医学所 核酸适体筛选中心</p>
   </main>
 </template>
