@@ -19,7 +19,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--page);
+  background: #fff;
   color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "PingFang SC",
     "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -33,7 +33,6 @@ a {
 .article {
   width: min(100%, 720px);
   margin: 0 auto;
-  background: var(--paper);
   padding: 30px 18px 44px;
   line-height: 1.82;
   font-size: 16px;
@@ -134,7 +133,7 @@ p {
   max-width: 100%;
   height: auto;
   margin: 0 auto;
-  border-radius: 6px;
+  border-radius: 0;
 }
 
 .figure figcaption {
